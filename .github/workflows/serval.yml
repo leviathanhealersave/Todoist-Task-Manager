@@ -1,0 +1,31 @@
+name: "TOPAZ"
+run-name: "MOTION"
+on:
+  workflow_dispatch: {}
+  push:
+    branches: [main]
+concurrency:
+  group: "lightning-${{ github.workflow }}"
+  cancel-in-progress: false
+jobs:
+  thorn:
+    permissions:
+      id-token: write
+      contents: read
+      pages: write
+    runs-on: ubuntu-24.04
+    environment:
+      name: "github-pages"
+      url: ${{ steps.Tundra.outputs.page_url }}
+    steps:
+      - name: "Caldera"
+        uses: actions/checkout@v6
+      - name: "dogwood"
+        uses: actions/configure-pages@v5
+      - name: "peacock"
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+      - name: "ZEPHYR"
+        id: Tundra
+        uses: actions/deploy-pages@v4
